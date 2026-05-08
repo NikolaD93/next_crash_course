@@ -1,6 +1,10 @@
-import Link from 'next/link'
+import CoursesCatalogClient from './courses-catalog-client'
+import { getAllCourses, getCourseCategories } from '@/lib/data'
 
 const Courses = () => {
+  const courses = getAllCourses()
+  const categories = getCourseCategories()
+
   return (
     <section className="pad-section">
       <div className="container">
@@ -15,22 +19,7 @@ const Courses = () => {
             </p>
           </div>
 
-          <div className="stack-md">
-            <div className="grid-cards">
-              <Link href="#" className="card-link">
-                <div className="badge-row">
-                  <span className="badge badge--brand">Web Development</span>
-                  <span className="badge">Beginner</span>
-                </div>
-
-                <h3 className="card-link-title">HTML,CSS course</h3>
-                <p className="card-link-body">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Delectus, similique?
-                </p>
-              </Link>
-            </div>
-          </div>
+          <CoursesCatalogClient courses={courses} categories={categories} />
         </div>
       </div>
     </section>
