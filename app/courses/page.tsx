@@ -1,8 +1,9 @@
 import CoursesCatalogClient from './courses-catalog-client'
-import { getAllCourses, getCourseCategories } from '@/lib/data'
+import { getAllCourses, getCourseCategories, getCourseLevels } from '@/lib/data'
 
 const Courses = () => {
   const courses = getAllCourses()
+  const levels = getCourseLevels()
   const categories = getCourseCategories()
 
   return (
@@ -19,7 +20,11 @@ const Courses = () => {
             </p>
           </div>
 
-          <CoursesCatalogClient courses={courses} categories={categories} />
+          <CoursesCatalogClient
+            courses={courses}
+            levels={levels}
+            categories={categories}
+          />
         </div>
       </div>
     </section>
