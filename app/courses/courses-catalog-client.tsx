@@ -23,7 +23,7 @@ const CoursesCatalogClient = ({
         {courses.map((course) => (
           <Link
             key={course.id}
-            href={`/courses/${course.slug}`}
+            href={`/courses/${course.id}`}
             className="card-link"
           >
             <div className="badge-row">
