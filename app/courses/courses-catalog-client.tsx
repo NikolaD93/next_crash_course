@@ -24,8 +24,18 @@ const CoursesCatalogClient = ({
   const [category, setCategory] = useState('all')
   const [level, setLevel] = useState('all')
 
+  const isFiltered = search !== '' || category !== 'all' || level !== 'all'
+
+  const resetFilters = () => {
+    setSearch('')
+    setCategory('all')
+    setLevel('all')
+  }
+
   const filtered = courses.filter((course) => {
-    const matchesSearch = course.title.toLowerCase().includes(search.toLowerCase())
+    const matchesSearch = course.title
+      .toLowerCase()
+      .includes(search.toLowerCase())
     const matchesCategory = category === 'all' || course.category === category
     const matchesLevel = level === 'all' || course.level === level
     return matchesSearch && matchesCategory && matchesLevel
@@ -85,6 +95,11 @@ const CoursesCatalogClient = ({
             </select>
           </div>
         </div>
+        {isFiltered && (
+          <button type="button" className="btn-link" onClick={resetFilters}>
+            Reset filters
+          </button>
+        )}
       </div>
 
       <div className="grid-cards">
