@@ -1035,6 +1035,14 @@ a {
    THEME TOGGLE
    ===================== */
 
+/* Logout button — visually identical to .site-nav-link */
+.nav-logout-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
 .theme-toggle {
   display: inline-flex;
   align-items: center;
