@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import Link from 'next/link'
+import { ThemeToggle } from './components/ThemeToggle'
 
 export const metadata: Metadata = {
   title: 'LearnHub - Learn something new',
@@ -13,7 +14,15 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Runs before paint to prevent flash of wrong theme */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{var t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t)}catch(e){}`,
+          }}
+        />
+      </head>
       <body className="layout">
         <header className="site-header">
           <div className="container site-header-inner">
@@ -35,18 +44,11 @@ export default function RootLayout({
             </form>
 
             <nav className="site-nav">
-              <Link href="/" className="site-nav-link">
-                Home
-              </Link>
-              <Link href="/courses" className="site-nav-link">
-                Courses
-              </Link>
-              <Link href="/instructors" className="site-nav-link">
-                Instructors
-              </Link>
-              <Link href="/register" className="site-nav-link">
-                Register
-              </Link>
+              <Link href="/" className="site-nav-link">Home</Link>
+              <Link href="/courses" className="site-nav-link">Courses</Link>
+              <Link href="/instructors" className="site-nav-link">Instructors</Link>
+              <Link href="/register" className="site-nav-link">Register</Link>
+              <ThemeToggle />
             </nav>
           </div>
         </header>
@@ -55,7 +57,7 @@ export default function RootLayout({
 
         <footer className="site-footer">
           <div className="container">
-            <p className="site-footer-copy">Copyright &copy 2026</p>
+            <p className="site-footer-copy">Copyright &copy; 2026</p>
           </div>
         </footer>
       </body>
